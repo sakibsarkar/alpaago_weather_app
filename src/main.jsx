@@ -1,4 +1,5 @@
 import "./index.css";
+import Authcontext from "./Authcontext/Authcontext";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -11,8 +12,10 @@ const quaryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={quaryClient}>
-      <RouterProvider router={route} />
-      <Toaster position="top-center" />
+      <Authcontext>
+        <RouterProvider router={route} />
+        <Toaster position="top-center" />
+      </Authcontext>
     </QueryClientProvider>
   </React.StrictMode>,
 )
