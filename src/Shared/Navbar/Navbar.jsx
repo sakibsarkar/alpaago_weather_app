@@ -25,7 +25,7 @@ const Navbar = () => {
             <div className="dynamic">
                 {
                     user ?
-                        <div className="useBox">
+                        <div className="userBox">
                             <div className="display_img">
                                 <img src={userImg} alt="" />
                             </div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Mycontext } from "../../Authcontext/Authcontext";
 import { addSocialUser } from "../../utils/addSocialUser";
+import { createUser } from "../../utils/createUser";
 
 const SocialAuth = () => {
 
@@ -29,9 +30,14 @@ const SocialAuth = () => {
                 return logOut()
             }
 
+            const userObj = {
+                userName: user?.displayName,
+                userEmai: user?.email,
+                status: "active"
+            }
+
             await axios.post("/token", { email: user?.email })
-            await axios.post("/add/user")
-            await addSocialUser(user)
+            await createUser(userObj)
             toast.dismiss(toastId)
             toast.success("Success", {
                 description: `Welcome ${user?.displayName}`
