@@ -11,8 +11,9 @@ nav {
     align-items: center;
     background-color: transparent;
     padding: 17px 37px;
-    width: 100vw;
-    position: absolute;
+    width: 95vw;
+    margin: 0 auto;
+    background-color: transparent;
 }
 
 
@@ -54,6 +55,27 @@ nav h2 {
     background-color: #d4f9ff;
     left: 0;
     bottom: -5px;
+}
+
+
+.dynamic .login_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid white;
+    padding: 5px 8px;
+    width: fit-content;
+    color: white;
+    border-radius: 5px;
+}
+
+.dynamic .login_btn a {
+    color: white;
+}
+
+.dynamic .login_btn a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 533px) {

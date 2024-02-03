@@ -1,0 +1,122 @@
+.signupContainer {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.signupContainer form {
+    margin: 63px 0 0 0;
+    width: 450px;
+    padding: 0 45px;
+    box-shadow: 0 2px 16.8px 3.2px #00264214;
+    min-height: 650px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    gap: 10px;
+    position: absolute;
+}
+
+.signupContainer form .eye {
+    position: absolute;
+    right: 57px;
+    bottom: 218px;
+    cursor: pointer;
+}
+
+.signupContainer form h1 {
+    color: #f3f3f3;
+    margin: 0 0 53px 0;
+}
+
+.signupContainer form .bro {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.signupContainer form input {
+    width: calc(100% - 9px);
+    height: 40px;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid transparent;
+    background-color: #ececec8a;
+    border-radius: 5px;
+    padding: 0 0 0 9px;
+}
+
+.signupContainer form input:focus {
+    border: 1px solid #2735ff;
+}
+
+
+.signupContainer form .photoFeild {
+    width: calc(100% - 9px) !important;
+    height: 133px;
+    border: 2px dashed #fdfdfd;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.signupContainer form .photoFeild img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+
+.signupContainer form button {
+    width: 100%;
+    background: linear-gradient(10deg, #ffffff75 0%, #97dcd2cf 100%);
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
+
+.imgSelector {
+    opacity: 0;
+    width: 0 !important;
+    position: absolute;
+    padding: 0 !important;
+}
+
+
+@media screen and (max-width: 576px) {
+    .signupContainer form {
+        width: calc(95vw - 30px);
+        padding: 0 15px;
+        min-height: 583px;
+    }
+
+    .signupContainer form .eye {
+        position: absolute;
+        right: 27px;
+        bottom: 204px;
+    }
+
+    .signupContainer form .photoFeild {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 1921px) {}

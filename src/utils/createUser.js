@@ -1,4 +1,4 @@
-import UseAxios from "./useAxioss";
+import UseAxios from "./useAxios";
 import { todayDate } from "./todayDate";
 
 export const createUser = async (userData) => {

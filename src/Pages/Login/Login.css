@@ -1,0 +1,122 @@
+.loginContainer {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loginBox {
+    background: linear-gradient(rgba(255, 255, 255, 0.141), rgba(137, 137, 137, 0.313));
+    backdrop-filter: blur(5px);
+    width: 900px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+.loginBox form {
+    width: calc(100% - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 50px 25px 0 25px;
+    flex-direction: column;
+}
+
+.loginBox form .inputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 28px;
+    position: relative;
+}
+
+
+.loginBox .eye {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+.loginBox form .inputBox p {
+    font-size: 26px;
+    color: white;
+    font-weight: 500;
+}
+
+.loginBox form .inputBox input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #dddddd;
+    outline: none;
+    padding: 0 0 5px 0;
+    font-size: 16px;
+}
+
+
+.loginBox form button {
+    width: 100%;
+    border: none;
+    border-radius: 39px;
+    padding: 11px 0;
+    background: linear-gradient(10deg, #ffffff75 0%, #97dcd2cf 100%);
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.loginLeft {
+    height: 100%;
+    min-width: 45%;
+    background: #adadad38;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+
+}
+
+.loginLeft p {
+    width: 90%;
+}
+
+
+
+@media screen and (max-width: 585px) {
+    .loginBox {
+        width: 95vw;
+    }
+
+    .loginLeft {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 585px) and (max-width: 940px) {
+    .loginBox {
+        width: 95vw;
+    }
+
+    .loginLeft {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 1921px) {}
