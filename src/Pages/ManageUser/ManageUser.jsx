@@ -1,7 +1,8 @@
 import "./ManageUser.css";
+import Swal from "sweetalert2";
 import UseAxios from "../../utils/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -15,6 +16,8 @@ import { formateDate } from "../../utils/dateFormater";
 const ManageUser = () => {
 
     const { createAccountWithEmail, setCreatingUser } = useContext(Mycontext)
+
+    const daterRef = useRef(null)
 
     const [showForm, setShowForm] = useState(false)
     const [status, setStatus] = useState("")
@@ -37,6 +40,8 @@ const ManageUser = () => {
         const userEmail = form.userEmail.value
         const userPassword = form.userPassword.value
         setCreatingUser(true)
+
+        const toastId = toast.loading("Please wait...")
         const user = await createAccountWithEmail(userEmail, userPassword)
         const userObj = {
             userName,
@@ -45,6 +50,8 @@ const ManageUser = () => {
         }
 
         await createUser(userObj)
+        toast.dismiss(toastId)
+        toast.success("user added")
         setCreatingUser(false)
         form.reset()
         setShowForm(false)
@@ -57,13 +64,13 @@ const ManageUser = () => {
     const hanldeChangeStatus = async (status, id) => {
 
         if (status === "active") {
-            await axios.put(`/user/status?id=${id}&&status=inactive`)
+            await axios.put(`/user/status?id=${id}&&status=${"inactive"}`)
             toast.success("Status update successfully")
             refetch()
         }
 
         if (status === "inactive") {
-            await axios.put(`/user/status?id=${id}&&status=active`)
+            await axios.put(`/user/status?id=${id}&&status=${"active"}`)
             toast.success("Status update successfully")
             refetch()
         }
@@ -83,6 +90,34 @@ const ManageUser = () => {
     }
 
 
+    const deleteUser = async (id) => {
+        Swal.fire({
+            title: "Do you sure want to delete?",
+            showDenyButton: true,
+            confirmButtonText: "Yes ✔️",
+            denyButtonText: `No X`
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                await axios.delete(`/user?id=${id}`)
+                toast.success("Successfully deleted")
+                refetch()
+
+            }
+            else if (result.isDenied) {
+                return;
+            }
+        });
+
+    }
+
+
+
+    const clearDateFilter = () => {
+        daterRef.current.value = ""
+        setDate("")
+    }
+
 
     return (
         <div className="userContainer">
@@ -100,7 +135,8 @@ const ManageUser = () => {
 
                     <div>
                         <p>Date: </p>
-                        <input type="date" name="" id="" onChange={handleDateFilter} />
+                        <input type="date" ref={daterRef} name="" id="" onChange={handleDateFilter} />
+                        <button onClick={clearDateFilter} className="clearBtn">Clear</button>
                     </div>
                 </div>
                 <table>
@@ -127,7 +163,7 @@ const ManageUser = () => {
                                     <FaArrowsRotate className="rotateIcon" />
                                 </td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button onClick={() => deleteUser(user?._id)}>Delete</button>
                                 </td>
                             </tr>)
                         }
