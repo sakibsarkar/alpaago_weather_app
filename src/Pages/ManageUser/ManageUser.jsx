@@ -1,6 +1,7 @@
 import "./ManageUser.css";
 import Swal from "sweetalert2";
 import UseAxios from "../../utils/useAxios";
+import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useRef, useState } from "react";
 import { CiUser } from "react-icons/ci";
@@ -23,11 +24,11 @@ const ManageUser = () => {
     const [status, setStatus] = useState("")
     const [date, setDate] = useState("")
 
-    const axios = UseAxios()
+    const myAxios = UseAxios()
     const { data = [], refetch } = useQuery({
         queryKey: ["userDaa", status, date],
         queryFn: async () => {
-            const { data: Users } = await axios.get(`/users?status=${status}&&date=${date}`)
+            const { data: Users } = await axios.get(`https://alpaago-weather-app-server.vercel.app/api/users?status=${status}&&date=${date}`)
             return Users
         }
     })
@@ -64,13 +65,13 @@ const ManageUser = () => {
     const hanldeChangeStatus = async (status, id) => {
 
         if (status === "active") {
-            await axios.put(`/user/status?id=${id}&&status=${"inactive"}`)
+            await myAxios.put(`/user/status?id=${id}&&status=${"inactive"}`)
             toast.success("Status update successfully")
             refetch()
         }
 
         if (status === "inactive") {
-            await axios.put(`/user/status?id=${id}&&status=${"active"}`)
+            await myAxios.put(`/user/status?id=${id}&&status=${"active"}`)
             toast.success("Status update successfully")
             refetch()
         }
@@ -99,7 +100,7 @@ const ManageUser = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
 
-                await axios.delete(`/user?id=${id}`)
+                await myAxios.delete(`/user?id=${id}`)
                 toast.success("Successfully deleted")
                 refetch()
 

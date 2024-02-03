@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "https://alpaago-weather-app-server.vercel.app/api",
+    baseURL: 'https://alpaago-weather-app-server.vercel.app/api',
     withCredentials: true
 })
 

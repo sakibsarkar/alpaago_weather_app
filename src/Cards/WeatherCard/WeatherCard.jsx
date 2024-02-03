@@ -1,4 +1,5 @@
 import "./WeatherCard.css";
+import Loader from "../../Components/Loader/Loader";
 import Wave from "react-wavify";
 import { BsArrowDown, BsArrowUp, BsDropletHalf, BsSpeedometer2, BsThermometerHalf } from "react-icons/bs";
 import { FiWind } from "react-icons/fi";
@@ -12,7 +13,7 @@ const WeatherCard = ({ isLoading, data = {} }) => {
         <div className="container">
             {
                 isLoading ?
-                    " <Loader></Loader>"
+                    <Loader />
 
                     :
 
