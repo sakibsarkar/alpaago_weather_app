@@ -9,3 +9,35 @@
 
 
 }
+
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 370px;
+}
+
+.searchIcon {
+    color: #ffffff;
+    font-size: 20px;
+    background: #f1f1f17a;
+    padding: 5px 20px;
+    border-radius: 19px;
+}
+
+.searchBox input::placeholder {
+    color: rgba(255, 255, 255, 0.574);
+    font-style: italic;
+}
+
+.searchBox input {
+    outline: none;
+    border: none;
+    width: 100%;
+    border-bottom: 3px solid white;
+    font-size: 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.726);
+
+}

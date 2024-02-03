@@ -23,35 +23,6 @@ nav h2 {
     color: #d4f9ff;
 }
 
-.searchBox {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.searchIcon {
-    color: #ffffff;
-    font-size: 20px;
-    background: #f1f1f17a;
-    padding: 5px 20px;
-    border-radius: 19px;
-}
-
-.searchBox input::placeholder {
-    color: rgba(255, 255, 255, 0.574);
-    font-style: italic;
-}
-
-.searchBox input {
-    outline: none;
-    border: none;
-    width: 440px;
-    border-bottom: 3px solid white;
-    font-size: 20px;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.726);
-
-}
 
 
 .nav_links {
