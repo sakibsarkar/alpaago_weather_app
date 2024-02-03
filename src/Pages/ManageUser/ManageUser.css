@@ -1,0 +1,163 @@
+.userContainer {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    gap: 10px;
+}
+
+
+.userContainer table {
+    border-collapse: collapse;
+    width: 700px;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.userContainer table thead {
+    background-color: #f44949;
+    height: 30px;
+    color: white;
+}
+
+.userContainer table tbody tr {
+    height: 30px;
+}
+
+.userContainer table tbody .status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.rotateIcon {
+    transition: 0.5s;
+}
+
+.status:hover .rotateIcon {
+    transform: rotate(180deg);
+}
+
+.userContainer table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7
+}
+
+.userContainer table tbody tr:nth-child(even) {
+    background-color: #e7e7e7;
+}
+
+.tableContainer .addBtn {
+    width: fit-content;
+    padding: 5px 7px;
+    background-color: #2bdd17;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    margin: 10px 0 0 0;
+}
+
+
+.userAddForm {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+
+.userAddForm form {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: #6e6e6e3d;
+    backdrop-filter: blur(5px);
+    border-radius: 7px;
+    padding: 15px;
+    position: relative;
+
+}
+
+.userAddForm form .cross {
+    width: fit-content;
+    position: absolute;
+    top: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    right: 10px;
+}
+
+.userAddForm form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    color: white;
+}
+
+.userAddForm form div p {
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.userAddForm form div input {
+    height: 30px;
+    padding: 0 0 0 5px;
+    width: calc(100% - 5px);
+    outline: none;
+    color: white;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+
+}
+
+.userAddForm form div input::placeholder {
+    color: rgb(225, 225, 225);
+}
+
+
+.userAddForm form button {
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #ffffff75;
+    backdrop-filter: blur(3px);
+    box-shadow: 0px 0px 10px #cbcdcd;
+    transition: 0.3s;
+}
+
+
+
+.userAddForm form button:hover {
+    box-shadow: 0px 0px 10px #ffffff;
+}

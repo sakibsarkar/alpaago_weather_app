@@ -78,6 +78,28 @@ nav h2 {
     text-decoration: underline;
 }
 
+
+.dynamic .display_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dynamic .useBox {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgb(245, 245, 245);
+}
+
+.dynamic .display_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 @media screen and (max-width: 533px) {
     nav {
         flex-direction: column;
