@@ -1,0 +1,31 @@
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    mix-blend-mode: difference;
+    border-radius: 50%;
+    z-index: 99;
+    transition: 0.1s;
+    animation: cursor 0.4s infinite alternate;
+
+
+}
+
+@keyframes cursor {
+    100% {
+        width: 16px;
+        height: 19px;
+    }
+}
+
+
+
+
+@media screen and (max-width: 800px) {
+    .cursor {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1921px) {}
