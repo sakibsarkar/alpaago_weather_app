@@ -1,16 +1,16 @@
 import "./ManageUser.css";
 import UseAxios from "../../utils/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbPasswordUser } from "react-icons/tb";
+import { toast } from "sonner";
 import { Mycontext } from "../../Authcontext/Authcontext";
 import { createUser } from "../../utils/createUser";
-import { uploadImg } from "../../utils/uploadImg";
+import { formateDate } from "../../utils/dateFormater";
 
 const ManageUser = () => {
 
@@ -18,12 +18,13 @@ const ManageUser = () => {
 
     const [showForm, setShowForm] = useState(false)
     const [status, setStatus] = useState("")
+    const [date, setDate] = useState("")
 
     const axios = UseAxios()
     const { data = [], refetch } = useQuery({
-        queryKey: ["userDaa", status],
+        queryKey: ["userDaa", status, date],
         queryFn: async () => {
-            const { data: Users } = await axios.get(`/users?status=${status}`)
+            const { data: Users } = await axios.get(`/users?status=${status}&&date=${date}`)
             return Users
         }
     })
@@ -52,6 +53,37 @@ const ManageUser = () => {
 
     }
 
+
+    const hanldeChangeStatus = async (status, id) => {
+
+        if (status === "active") {
+            await axios.put(`/user/status?id=${id}&&status=inactive`)
+            toast.success("Status update successfully")
+            refetch()
+        }
+
+        if (status === "inactive") {
+            await axios.put(`/user/status?id=${id}&&status=active`)
+            toast.success("Status update successfully")
+            refetch()
+        }
+
+        else {
+            return;
+        }
+
+
+    }
+
+
+    const handleDateFilter = (e) => {
+        const value = e.target.value
+        const dateValue = formateDate(value)
+        setDate(dateValue)
+    }
+
+
+
     return (
         <div className="userContainer">
 
@@ -65,6 +97,11 @@ const ManageUser = () => {
                             <option value="inactive">Inactive</option>
                         </select>
                     </div>
+
+                    <div>
+                        <p>Date: </p>
+                        <input type="date" name="" id="" onChange={handleDateFilter} />
+                    </div>
                 </div>
                 <table>
                     <thead>
@@ -72,6 +109,7 @@ const ManageUser = () => {
 
                             <th>Sl</th>
                             <th>User name</th>
+                            <th>Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -81,8 +119,10 @@ const ManageUser = () => {
                             data?.map((user, index) => <tr key={user?._id}>
                                 <td>{index + 1}</td>
                                 <td>{user?.userName}</td>
+                                <td>{user?.date}</td>
                                 <td className="status"
                                     style={{ color: user?.status === "active" ? "#12b712" : "red" }}
+                                    onClick={() => hanldeChangeStatus(user?.status, user?._id)}
                                 >{user?.status}
                                     <FaArrowsRotate className="rotateIcon" />
                                 </td>

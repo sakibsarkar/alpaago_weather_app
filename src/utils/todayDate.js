@@ -10,6 +10,5 @@ export const todayDate = () => {
     const monthIndex = today.getMonth()
     const month = months[monthIndex]
     const year = today.getFullYear()
-
-    return `${date} ${month}, ${year}`
+    return `${month} ${date}, ${year}`
 }
