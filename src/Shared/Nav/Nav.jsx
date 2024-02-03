@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Mycontext } from "../../Authcontext/Authcontext";
 
 const Navbar = () => {
-    const { user } = useContext(Mycontext)
+    const { user, logOut } = useContext(Mycontext)
     const userImg = user?.photoURL || "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
     return (
         <nav>
@@ -29,7 +29,7 @@ const Navbar = () => {
                             <div className="display_img">
                                 <img src={userImg} alt="" />
                             </div>
-                            <p>{user?.displayName}</p>
+                            <button onClick={() => logOut()}>Logout</button>
                         </div>
                         :
                         <div className="login_btn">

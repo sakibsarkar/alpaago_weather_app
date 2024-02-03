@@ -1,31 +1,71 @@
 import "./ManageUser.css";
 import UseAxios from "../../utils/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { updateProfile } from "firebase/auth";
+import { useContext, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbPasswordUser } from "react-icons/tb";
+import { Mycontext } from "../../Authcontext/Authcontext";
+import { createUser } from "../../utils/createUser";
+import { uploadImg } from "../../utils/uploadImg";
 
 const ManageUser = () => {
 
+    const { createAccountWithEmail, setCreatingUser } = useContext(Mycontext)
+
     const [showForm, setShowForm] = useState(false)
+    const [status, setStatus] = useState("")
 
     const axios = UseAxios()
-    const { data = [] } = useQuery({
-        queryKey: ["userDaa"],
+    const { data = [], refetch } = useQuery({
+        queryKey: ["userDaa", status],
         queryFn: async () => {
-            const { data: Users } = await axios.get("/users")
+            const { data: Users } = await axios.get(`/users?status=${status}`)
             return Users
         }
     })
 
 
+    const handleAdduser = async (e) => {
+        e.preventDefault()
+        const form = e.target
+        const userName = form.userName.value
+        const userEmail = form.userEmail.value
+        const userPassword = form.userPassword.value
+        setCreatingUser(true)
+        const user = await createAccountWithEmail(userEmail, userPassword)
+        const userObj = {
+            userName,
+            userEmail,
+            status: "active"
+        }
+
+        await createUser(userObj)
+        setCreatingUser(false)
+        form.reset()
+        setShowForm(false)
+        refetch()
+
+
+    }
+
     return (
         <div className="userContainer">
 
             <div className="tableContainer">
+                <div className="filter">
+                    <div>
+                        <p>Status: </p>
+                        <select onChange={(e) => setStatus(e.target.value)}>
+                            <option value="">All</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -60,7 +100,7 @@ const ManageUser = () => {
             {
                 showForm ?
                     <div className="userAddForm">
-                        <form>
+                        <form onSubmit={handleAdduser}>
                             <div className="cross" onClick={() => setShowForm(false)}>
                                 <RxCross2 />
                             </div>
@@ -75,13 +115,9 @@ const ManageUser = () => {
                             </div>
                             <div>
                                 <p><TbPasswordUser />Password</p>
-                                <input type="Email" placeholder="Enter user password" name="userEmail" required />
+                                <input type="password" placeholder="Enter user password" name="userPassword" required />
                             </div>
 
-                            <div>
-                                <p>User Photo (optional)</p>
-                                <input type="file" accept="*/image" name="userPhoto" required />
-                            </div>
                             <button>Add a new user</button>
                         </form>
                     </div>

@@ -73,7 +73,6 @@ const Signup = () => {
             await updateProfile(user, {
                 photoURL: data?.display_url,
                 displayName: `${Fname} ${Lname}`
-
             })
 
             //user upload func

@@ -9,6 +9,9 @@ const Authcontext = ({ children }) => {
     const [user, setUser] = useState(null)
     const [waitForUser, setWaitForUser] = useState(true)
     const [cityName, setCityName] = useState("dhaka")
+
+    const [creatingUser, setCreatingUser] = useState(false)
+
     const [naviGateLocation, setNaviGateLocation] = useState("")//it will be use in register page we will set the value from log in page
 
 
@@ -43,12 +46,15 @@ const Authcontext = ({ children }) => {
     useEffect(() => {
 
         onAuthStateChanged(auth, (USER) => {
+            if (creatingUser) {
+                return
+            }
             setUser(USER)
             setLoading(false)
 
         })
 
-    }, [waitForUser])
+    }, [waitForUser, creatingUser])
 
 
     const items = {
@@ -63,7 +69,9 @@ const Authcontext = ({ children }) => {
         naviGateLocation,
         setNaviGateLocation,
         cityName,
-        setCityName
+        setCityName,
+        creatingUser,
+        setCreatingUser
     }
     return (
         <Mycontext.Provider value={items}>
