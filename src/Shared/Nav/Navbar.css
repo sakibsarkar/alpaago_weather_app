@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+.hide {
+    display: none;
+}
+
+nav {
+    font-family: 'Acme', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 17px 37px;
+    width: 100vw;
+    position: absolute;
+}
+
+
+
+nav h2 {
+
+    font-size: 35px;
+    color: #d4f9ff;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.searchIcon {
+    color: #ffffff;
+    font-size: 20px;
+    background: #f1f1f17a;
+    padding: 5px 20px;
+    border-radius: 19px;
+}
+
+.searchBox input::placeholder {
+    color: rgba(255, 255, 255, 0.574);
+    font-style: italic;
+}
+
+.searchBox input {
+    outline: none;
+    border: none;
+    width: 440px;
+    border-bottom: 3px solid white;
+    font-size: 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.726);
+
+}
+
+
+.nav_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav_links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    color: white;
+    font-size: 20px;
+}
+
+
+.nav_links .active {
+    position: relative;
+}
+
+.nav_links .active::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #d4f9ff;
+    left: 0;
+    bottom: -5px;
+}
+
+@media screen and (max-width: 533px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .searchBox {
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width:959px) {
+    .searchBox {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width:1090px) {
+    .searchBox {
+        width: 40%;
+    }
+
+    .searchBox input {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1120px) {
+    nav {
+        gap: 20px;
+    }
+
+}
